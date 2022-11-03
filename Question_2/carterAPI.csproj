@@ -1,0 +1,33 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <OpenApiReference Include="OpenAPIs\boards.json" CodeGenerator="NSwagCSharp" Namespace="Trello_API">
+      <SourceUri>https://api.trello.com/1/members/me/boards?key=6eb508bda626ff893db446eff50d0066&amp;token=ae4a73cb0e40c46f6e642f5f7429394534b35e3b5a4c7c21438e5389eec20497</SourceUri>
+    </OpenApiReference>
+    <OpenApiReference Include="OpenAPIs\boards1.json" CodeGenerator="NSwagCSharp" Namespace="Trello_Create_Boards" ClassName="Trello_Create_Board">
+      <SourceUri>https://api.trello.com/1/members/me/boards?fields=name,url&amp;key=6eb508bda626ff893db446eff50d0066&amp;token=ae4a73cb0e40c46f6e642f5f7429394534b35e3b5a4c7c21438e5389eec20497</SourceUri>
+    </OpenApiReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNet.WebApi.Client" Version="5.2.9" />
+    <PackageReference Include="Microsoft.Extensions.ApiDescription.Client" Version="3.0.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+    <PackageReference Include="NSwag.ApiDescription.Client" Version="13.0.5">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
+    <PackageReference Include="System.Data.SqlClient" Version="4.8.4" />
+  </ItemGroup>
+
+</Project>
