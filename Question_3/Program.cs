@@ -114,7 +114,7 @@ namespace HttpClientSample
                 int pNum = users.phone_number;
 
                 var url = await CreateCardAsync(users, userName, userLName, userEmail, pNum);
-                Console.WriteLine($"Created at {url}");
+                Console.WriteLine($"Registration was successful");
 
                 // Get the user
                 users = await GetUserAsync(url.PathAndQuery);
