@@ -75,8 +75,7 @@ namespace carterAPI.Controllers
             return resp;
         }
 
-        [HttpGet]
-        [Route("getCarById/{id}")]
+        [HttpGet, Route("getCarById/{id}")]
         // Get car by id
         public Response getCarById(int id)
         {
