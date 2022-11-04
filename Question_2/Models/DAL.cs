@@ -5,7 +5,7 @@ namespace carterAPI.Models
 {
     public class DAL
     {
-        // Get all employees
+        // Get all Users
         public Response getAllUsers(SqlConnection con)
         {
             Response resp = new Response();
@@ -45,7 +45,7 @@ namespace carterAPI.Models
             return resp;
         }
 
-        // Get employee By ID
+        // Get user By ID
         public Response getUserById(SqlConnection con, int id)
         {
             Response resp = new Response();
@@ -254,31 +254,31 @@ namespace carterAPI.Models
             return resp;
         }
         // Get Purchase by ID
-        public Response getPurchaseId(SqlConnection con, int purchase_id)
+        public Response getPurchaseId(SqlConnection con, int id)
         {
             Response resp = new Response();
-            carEndpoint point = new carEndpoint();
             SqlDataAdapter da = new SqlDataAdapter("SELECT p.*, ci.*, c.* FROM tbl_purchases p " +
                 "LEFT JOIN tbl_customer_info ci ON ci.cust_id = p.cust_id " +
-                "LEFT JOIN tbl_car_info c ON c.car_id = p.car_id WHERE p.id='" + purchase_id+"'", con);
+                "LEFT JOIN tbl_car_info c ON c.car_id = p.car_id WHERE p.purchase_id='" + id + "' ", con);
             DataTable dt = new DataTable();
-            
+            Endpoint point = new Endpoint();
             da.Fill(dt);
             if (dt.Rows.Count > 0)
             {
+                Endpoint poi = new Endpoint();
                 carEndpoint list_point = new carEndpoint();
-                Endpoint list_purchasepoint = new Endpoint();
-                list_purchasepoint.cust_id = Convert.ToInt32(dt.Rows[0]["cust_id"]);
-                list_purchasepoint.first_name = Convert.ToString(dt.Rows[0]["first_name"]);
-                list_purchasepoint.last_name = Convert.ToString(dt.Rows[0]["last_name"]);
-                list_purchasepoint.email = Convert.ToString(dt.Rows[0]["email"]);
-                list_purchasepoint.phone_number = Convert.ToString(dt.Rows[0]["phone_number"]);
+                carEndpoint car = new carEndpoint();
+                poi.cust_id = Convert.ToInt32(dt.Rows[0]["cust_id"]);
+                poi.first_name = Convert.ToString(dt.Rows[0]["first_name"]);
+                poi.last_name = Convert.ToString(dt.Rows[0]["last_name"]);
+                poi.email = Convert.ToString(dt.Rows[0]["email"]);
+                poi.phone_number = Convert.ToString(dt.Rows[0]["phone_number"]);
                 list_point.car_id = Convert.ToInt32(dt.Rows[0]["car_id"]);
                 list_point.car_name = Convert.ToString(dt.Rows[0]["car_name"]);
                 list_point.car_model = Convert.ToString(dt.Rows[0]["car_model"]);
-                //list_point.car_image = Convert.ToString(dt.Rows[0]["car_image"]);
+                list_point.car_image = Convert.ToString(dt.Rows[0]["car_image"]);
                 list_point.year_released = Convert.ToInt32(dt.Rows[0]["year_released"]);
-                list_point.no_of_liters = Convert.ToDecimal(dt.Rows[0]["no_of_liters"]);
+                list_point.no_of_liters = Convert.ToInt32(dt.Rows[0]["no_of_liters"]);
                 list_point.transmission = Convert.ToString(dt.Rows[0]["transmission"]);
                 list_point.price = Convert.ToDecimal(dt.Rows[0]["price"]);
                 list_point.monthly_installment = Convert.ToDecimal(dt.Rows[0]["monthly_installment"]);
@@ -286,13 +286,10 @@ namespace carterAPI.Models
                 list_point.warrenty = Convert.ToInt32(dt.Rows[0]["warrenty"]);
                 list_point.good_features = Convert.ToString(dt.Rows[0]["good_features"]);
                 list_point.bad_features = Convert.ToString(dt.Rows[0]["bad_features"]);
-
-
-
-
                 resp.StatusCode = 200;
                 resp.StatusMessage = "Data found";
-                resp.car_point = point;
+                resp.car_point = list_point; 
+                resp.end_point = poi;
             }
             else
             {
@@ -304,6 +301,7 @@ namespace carterAPI.Models
 
             return resp;
         }
+
 
 
         // Get All purchases
