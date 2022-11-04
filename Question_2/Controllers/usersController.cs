@@ -112,8 +112,7 @@ namespace carterAPI.Controllers
             return resp;
         }
 
-        [HttpGet]
-        [Route("getPurchaseId/{id}")]
+        [HttpGet, Route("getPurchaseId/{id}")]
         // Get purchase by id
         public Response getPurchaseId(int id)
         {
@@ -123,19 +122,6 @@ namespace carterAPI.Controllers
             resp = dal.getPurchaseId(con, id);
             return resp;
         }
-
-        //[HttpGet]
-        //[Route("getPurchase")]
-        //// Select * purchases
-        //public Response getPurchase()
-        //{
-        //    SqlConnection con = new SqlConnection(_config.GetConnectionString("DefulatConnection").ToString());
-        //    Response resp = new Response();
-        //    DAL dal = new DAL();
-        //    resp = dal.getPurchase(con);
-        //    return resp;
-        //}
-
         
 
         [HttpGet]
