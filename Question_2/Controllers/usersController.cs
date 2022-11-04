@@ -130,16 +130,15 @@ namespace carterAPI.Controllers
         }
 
 
-        [HttpGet, Route("storedProcedureId/{id}")]
-        // Select * purchases
-        public Response storedProcedure(int id)
-        {
-            SqlConnection con = new SqlConnection(_config.GetConnectionString("DefulatConnection").ToString());
-            Response resp = new Response();
-            DAL dal = new DAL();
-            resp = dal.storedProcedure(con, id);
-            return resp;
-        }
+//         [HttpGet, Route("storedProcedureId/{id}")]
+//         public Response storedProcedure(int id)
+//         {
+//             SqlConnection con = new SqlConnection(_config.GetConnectionString("DefulatConnection").ToString());
+//             Response resp = new Response();
+//             DAL dal = new DAL();
+//             resp = dal.storedProcedure(con, id);
+//             return resp;
+//         }
    
         [HttpPost, Route("createTrilloCard")]
         public async Task<List<Models.Endpoint>> createCard(string name)
