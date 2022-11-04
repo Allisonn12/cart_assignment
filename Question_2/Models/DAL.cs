@@ -140,12 +140,12 @@ namespace carterAPI.Models
             return resp;
         }
 
-        public Response getCarById(SqlConnection con, int car_id)
+        public Response getCarById(SqlConnection con, int id)
         {
             Response resp = new Response();
-            SqlDataAdapter da = new SqlDataAdapter("SELECT * FROM tbl_car_info WHERE car_id='" + car_id + "' ", con);
+            SqlDataAdapter da = new SqlDataAdapter("SELECT * FROM tbl_car_info WHERE car_id='" + id + "' ", con);
             DataTable dt = new DataTable();
-            carEndpoint point = new carEndpoint();
+            Endpoint point = new Endpoint();
             da.Fill(dt);
             if (dt.Rows.Count > 0)
             {
@@ -155,7 +155,7 @@ namespace carterAPI.Models
                 list_point.car_model = Convert.ToString(dt.Rows[0]["car_model"]);
                 list_point.car_image = Convert.ToString(dt.Rows[0]["car_image"]);
                 list_point.year_released = Convert.ToInt32(dt.Rows[0]["year_released"]);
-                list_point.no_of_liters = Convert.ToDecimal(dt.Rows[0]["no_of_liters"]);
+                list_point.no_of_liters = Convert.ToInt32(dt.Rows[0]["no_of_liters"]);
                 list_point.transmission = Convert.ToString(dt.Rows[0]["transmission"]);
                 list_point.price = Convert.ToDecimal(dt.Rows[0]["price"]);
                 list_point.monthly_installment = Convert.ToDecimal(dt.Rows[0]["monthly_installment"]);
@@ -165,7 +165,7 @@ namespace carterAPI.Models
                 list_point.bad_features = Convert.ToString(dt.Rows[0]["bad_features"]);
                 resp.StatusCode = 200;
                 resp.StatusMessage = "Data found";
-                resp.car_point = point;
+                resp.car_point = list_point;
             }
             else
             {
@@ -177,6 +177,7 @@ namespace carterAPI.Models
 
             return resp;
         }
+
 
         public Response getAllCars(SqlConnection con)
         {
