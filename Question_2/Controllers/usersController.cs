@@ -24,8 +24,7 @@ namespace carterAPI.Controllers
             };
 
         }
-        [HttpGet]
-        [Route("getAllUsers")]
+        [HttpGet, Route("getAllUsers")]
         // Select * users
         public Response getAllUsers()
         {
@@ -36,8 +35,7 @@ namespace carterAPI.Controllers
             return resp; 
         }
 
-        [HttpGet]
-        [Route("getUserById/{id}")]
+        [HttpGet, Route("getUserById/{id}")]
         // Select * users using an ID
         public Response getUserById(int id)
         {
@@ -48,8 +46,7 @@ namespace carterAPI.Controllers
             return resp;
         }
 
-        [HttpPost]
-        [Route("addNewUser")]
+        [HttpPost, Route("addNewUser")]
         // Insert new user
         public Response addNewUser(Models.Endpoint endpoint)
         {
@@ -62,8 +59,7 @@ namespace carterAPI.Controllers
         }
 
 
-        [HttpPost]
-        [Route("addNewCar")]
+        [HttpPost, Route("addNewCar")]
         // Add new car
         public Response addNewCar(Models.carEndpoint endpoint)
         {
@@ -86,8 +82,7 @@ namespace carterAPI.Controllers
             return resp;
         }
 
-        [HttpGet]
-        [Route("getAllCars")]
+        [HttpGet, Route("getAllCars")]
         // Select * cars
         public Response getAllCars()
         {
@@ -99,8 +94,7 @@ namespace carterAPI.Controllers
         }
 
 
-        [HttpPost]
-        [Route("addNewPurchase")]
+        [HttpPost, Route("addNewPurchase")]
         // Add new purchase
         public Response addNewPurchase(Models.purchasesEndpoint endpoint)
         {
@@ -124,9 +118,8 @@ namespace carterAPI.Controllers
         }
         
 
-        [HttpGet]
-        [Route("getAllPurchases")]
-        // Select * purchases
+       [HttpGet, Route("getAllPurchases")]
+        // Get All purchases
         public Response getAllPurchases()
         {
             SqlConnection con = new SqlConnection(_config.GetConnectionString("DefulatConnection").ToString());
@@ -137,8 +130,7 @@ namespace carterAPI.Controllers
         }
 
 
-        [HttpGet]
-        [Route("storedProcedureId/{id}")]
+        [HttpGet, Route("storedProcedureId/{id}")]
         // Select * purchases
         public Response storedProcedure(int id)
         {
@@ -149,8 +141,7 @@ namespace carterAPI.Controllers
             return resp;
         }
    
-        [HttpPost]
-        [Route("createTrilloCard")]
+        [HttpPost, Route("createTrilloCard")]
         public async Task<List<Models.Endpoint>> createCard(string name)
         {
             _endpoint = new List<Models.Endpoint>();
